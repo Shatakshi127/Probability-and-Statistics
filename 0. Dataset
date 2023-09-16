@@ -1,3 +1,11 @@
+# Sample data
+data <- c(5, 2, 10, 3, 8)
+# Sort in descending order
+sorted_data_desc <- sort(data, decreasing = TRUE)
+# Print the sorted data in descending order
+print(sorted_data_desc)
+
+
 # Print the mtcars data set
 mtcars
 
