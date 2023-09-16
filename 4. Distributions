@@ -1,0 +1,179 @@
+#DISTRIBUTIONS
+
+#P(x=a)
+#P(x>=a) ::: Can't use in this formula. Have to convert in 1st or 3rd
+#P(x<=a)
+#x=0,1,2,3,4,5
+
+#Binomial   binom  equality= dnorm   less than equal- pnorm (atmost)
+#Normal     norm   equality= dnorm   less than equal- pnorm (atmost)
+#Poisson    pois   equality= dnorm   less than equal- pnorm (atmost)
+#Hyper-Geometric
+#Bernouli
+ 
+P(x=7)+P(x=8)+P(x=9) or P(x<=9)-P(x<=6) or P(7<=x<=9)
+6 is the denotation
+
+#Binomial Distribution
+#nCr.pr.q(n-r)
+dbinom(a,n,p)  : a is startung value or atmost, n is total number of values, p is the prob of the asked 1. Eg- Prob of 6 in dice
+pbinom(a,n,p)
+
+dbinom(7,12,1/6)+dbinom(8,12,1/6)+dbinom(9,12,1/6)
+pbinom can't work like the above
+so
+pbinome(9,12,1/6)-pbinom(6,12,1/6)      3 arguments
+Always integer if integer.
+But normal distribution is continuous
+
+
+#Q2: 
+#NORMAL DISTRIBUTION: GRAPH- About the axis- similar. Left and right are identically similar
+#Point of intersection of axis is mean
+#P(x>=84)   : have to change it in other form but in case of graph can do directly
+#1-P(x<=84)
+#We have choice of left and right in graph
+#Inequaltiy: p
+pnorm(84, 72,15.2, lower.tail=T)   #prob element, mean, standard dev, lower tail i.e., which side
+#Eg- two ranges then???  It will be difficult to convert. so use lower.tail
+
+##########P(69<=x<=85),      P(85<=x<=90)
+
+
+#Q3.
+#pois
+#dpois   (1st position, lambda)
+dpois(0,5)
+#48<=x<=50
+
+P(x<=50)-P(x<=47)
+ppois(50,50)-ppois(47,50)       here 2 arhuments, (case,....)
+
+
+
+#IF NOT MENTIONED WHICH DISTRIBUTION? STIPULATE WHICH IS THE BEST DISTRIBUTION.
+
+
+
+#Hypergeometry-----------------
+#dhyper(a,m,n,k)
+#defective bulb case
+a=3, defective case   (demand)
+k- kitne mein se
+m- 12 how much total defective in given data
+n- non defective
+
+
+
+#Q5:
+#Randomly distributed- then?
+#x=0,1,2,3.................. till 31
+#How?
+x<-0:31
+x<-seq(0,31)
+
+
+#PMFgraphs
+#CMF graphs
+
+pmf<-dbinom(x, 31, 0,447)  here x has 32 entries
+plot(x, pmf)
+
+
+#Density
+#Cummulative means that value or below that. Less than equal to.
+
+cdf<-pbimom(x,31,0.447)
+plot(x,cdf)
+
+#Mean
+mean(x)
+#Variance
+var(x)
+#Standard Deviation
+sd(x)
+
+#DISTRIBUTIONS
+
+#1. P(x=a)
+#2. P(x>=a)          ::: Can't use in this formula. Have to convert in 1st or 3rd. No atleast case
+#3. P(x<=a)
+
+#x=0,1,2,3,4,5
+
+#1. Binomial           binom  equality= dbinom   less than equal= pbinom (atmost)
+#2. Normal             norm   equality= dnorm    less than equal= pnorm (atmost)
+#3. Poisson            pois   equality= dpois    less than equal- ppois (atmost)
+#4. Hypergeometric
+#5. Bernouli
+
+
+##########################################################################################Q1
+n <- 12    # Number of dice rolls
+p <- 1/6   # Probability of getting a 6 on one roll
+prob_7_to_9 <- pbinom(9, size = n, prob = p) - pbinom(6, size = n, prob = p)
+cat("Probability of getting 7, 8, or 9 sixes:", prob_7_to_9, "\n")
+#OR
+dbinom(7,12,1/6)+dbinom(8,12,1/6)+dbinom(9,12,1/6)
+
+
+##########################################################################################Q2
+pnorm(84, 72,15.2, lower.tail=T)
+#OR
+mean_score <- 72
+std_dev <- 15.2
+score_threshold <- 84
+# Calculate the cumulative probability of scoring less than 84
+prob_less_than_84 <- pnorm(score_threshold, mean = mean_score, sd = std_dev, lower.tail = TRUE)
+# Calculate the percentage of students scoring 84 or more
+percentage_scoring_84_or_more <- (1 - prob_less_than_84) * 100
+# Print the result
+cat("Percentage of students scoring 84 or more:", percentage_scoring_84_or_more, "%\n")
+
+
+##########################################################################################Q3
+lambda_1 <- 5  # Average arrivals in one hour
+x_1 <- 0      # Number of cars (events) for which we want to calculate the probability
+prob_no_car_arrival <- dpois(x_1, lambda_1)
+cat("Probability that no car arrives:", prob_no_car_arrival, "\n")
+
+lambda_2 <- 50  # Average arrivals in 10 hours
+y_range <- 48:50  # Range of customers
+prob_between_48_and_50 <- sum(dpois(y_range, lambda_2))
+cat("Probability that there are between 48 and 50 customers:", prob_between_48_and_50, "\n")
+
+
+##########################################################################################Q4
+a <- 17     # Number of defective processors in the shipment
+m <- 250    # Total number of processors in the shipment
+n <- 5      # Number of processors in the sample
+k <- 3      # Number of defective processors we want to select in the sample
+# Calculate the probability of exactly 3 defectives in the sample
+prob_3_defectives <- dhyper(k, a, (m - a), n)
+cat("Probability of exactly 3 defective processors in the sample:", prob_3_defectives, "\n")
+
+
+##########################################################################################Q5
+# Generate the values of X (0 to 31)
+x <- 0:31
+
+# Calculate the PMF for each value of X
+pmf <- dbinom(x, size = 31, prob = 0.447)
+
+# Plot the PMF
+plot(x, pmf, type = "h", lwd = 3, col = "blue", xlab = "Number of Students (X)", ylab = "Probability", main = "Probability Mass Function")
+
+# Calculate the CDF for each value of X
+cdf <- pbinom(x, size = 31, prob = 0.447)
+
+# Plot the CDF
+plot(x, cdf, type = "s", lwd = 3, col = "red", xlab = "Number of Students (X)", ylab = "Cumulative Probability", main = "Cumulative Distribution Function")
+
+# Calculate mean, variance, and standard deviation
+mean_X <- mean(x)
+var_X <- var(x)
+sd_X <- sd(x)
+
+cat("Mean of X:", mean_X, "\n")
+cat("Variance of X:", var_X, "\n")
+cat("Standard Deviation of X:", sd_X, "\n")
