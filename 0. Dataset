@@ -1,0 +1,145 @@
+# Print the mtcars data set
+mtcars
+
+# Use the question mark to get information about the data set
+?mtcars
+
+Data_Cars <- mtcars # create a variable of the mtcars data set for better organization
+# Use dim() to find the dimension of the data set
+dim(Data_Cars)
+# Use names() to find the names of the variables from the data set
+names(Data_Cars)
+
+#rownames() function to get the name of each row in the first column, which is the name of each car
+Data_Cars <- mtcars
+rownames(Data_Cars)
+
+#f you want to print all values that belong to a variable, access the data frame by using the $ sign, and the name of the variable (for example cyl (cylinders)):
+Data_Cars <- mtcars
+Data_Cars$cyl
+
+#To sort the values, use the sort() function:
+Data_Cars <- mtcars
+sort(Data_Cars$cyl)
+
+Data_Cars <- mtcars
+summary(Data_Cars)
+
+#Find the largest and smallest value of the variable hp (horsepower).
+Data_Cars <- mtcars
+max(Data_Cars$hp)
+min(Data_Cars$hp)
+
+#index
+which.max(Data_Cars$hp)
+which.min(Data_Cars$hp)
+
+#Or even better, combine which.max() and which.min() with the rownames() function to get the name of the car with the largest and smallest horsepower:
+rownames(Data_Cars)[which.max(Data_Cars$hp)]
+rownames(Data_Cars)[which.min(Data_Cars$hp)]
+
+#MEAN
+mean(Data_Cars$wt)
+
+
+#MEDIAN
+median(Data_Cars$wt)
+
+#MODE
+Data_Cars <- mtcars
+names(sort(-table(Data_Cars$wt)))[1]
+
+# c() specifies which percentile you want
+quantile(Data_Cars$wt, c(0.75))
+
+#If you run the quantile() function without specifying the c() parameter, you will get the percentiles of 0, 25, 50, 75 and 100:
+quantile(Data_Cars$wt)
+
+
+###############################################################################################################################
+
+# Load the iris dataset
+data(iris)
+
+# (a) Print first few rows of the dataset
+print(head(iris))
+
+data(iris)  # Load the iris dataset
+first_10_rows <- head(iris, n = 10)  # Extract the first 10 rows
+print(first_10_rows)  # Print the first 10 rows
+
+
+# (b) Find the structure of the dataset
+str(iris)
+
+# (c) Find the range of the data regarding the sepal length of flowers
+sepal_length_range <- range(iris$Sepal.Length)
+cat("Range of Sepal Length:", sepal_length_range[1], "to", sepal_length_range[2], "\n")
+#OR
+range(A$Sepal.Length)
+
+# (d) Find the mean of the sepal length
+mean_sepal_length <- mean(iris$Sepal.Length)
+cat("Mean Sepal Length:", mean_sepal_length, "\n")
+
+# (e) Find the median of the sepal length
+median_sepal_length <- median(iris$Sepal.Length)
+cat("Median Sepal Length:", median_sepal_length, "\n")
+
+# (f) Find the first and the third quartiles and hence the interquartile range
+quartiles <- quantile(iris$Sepal.Length, c(0.25, 0.75))
+interquartile_range <- quartiles[2] - quartiles[1]
+cat("First Quartile:", quartiles[1], "\n")
+cat("Third Quartile:", quartiles[2], "\n")
+cat("Interquartile Range:", interquartile_range, "\n")
+
+# (g) Find the standard deviation and variance
+std_dev_sepal_length <- sd(iris$Sepal.Length)
+variance_sepal_length <- var(iris$Sepal.Length)
+cat("Standard Deviation of Sepal Length:", std_dev_sepal_length, "\n")
+cat("Variance of Sepal Length:", variance_sepal_length, "\n")
+
+# (h) Similar calculations for other attributes
+# Sepal Width
+std_dev_sepal_width <- sd(iris$Sepal.Width)
+variance_sepal_width <- var(iris$Sepal.Width)
+# Petal Length
+std_dev_petal_length <- sd(iris$Petal.Length)
+variance_petal_length <- var(iris$Petal.Length)
+# Petal Width
+std_dev_petal_width <- sd(iris$Petal.Width)
+variance_petal_width <- var(iris$Petal.Width)
+
+# (i) Use the built-in function summary on the dataset Iris
+summary(iris)
+
+
+################################################################################################################################
+# display airquality dataset
+print(airquality)
+
+# use dim() to get dimension of dataset
+cat("Dimension:",dim(airquality))
+
+# use nrow() to get number of rows
+cat("\nRow:",nrow(airquality))
+
+# use ncol() to get number of columns
+cat("\nColumn:",ncol(airquality))
+
+# use names() to get name of variable of dataset
+cat("\nName of Variables:",names(airquality))
+
+# display all values of Temp variable
+print(airquality$Temp)
+
+# sort values of Temp variable
+sort(airquality$Temp)
+
+# get statistical summary of Temp variable
+summary(airquality$Temp)
+
+
+################################################################################################################################
+
+
