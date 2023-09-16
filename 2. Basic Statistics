@@ -1,0 +1,108 @@
+######################################################################################Q1a
+#Eg- 
+#data <- 1:20
+#sample(data, 5, replace = FALSE, prob = NULL)
+# Note : On each run, it gives different answer.
+
+sample(c("Gold","Silver", "Bronze"),10, replace=T, prob=c(20, 30, 50))
+#OR
+chest <- c(rep("gold", 20),rep("silver", 30),rep("bronze", 50))
+sample(x = chest,size = 10)
+
+
+######################################################################################Q1b
+sample(c("Success","Failure"),10, replace=T, prob=c(0.9,0.1))
+
+
+######################################################################################Q2a
+any(duplicated(sample(365, 30, replace = TRUE)))
+
+
+######################################################################################Q2a,b
+#Note: Function to calculate the probability of no shared birthdays in a group of size n
+no_shared_birthday <- function(n) {
+  product <- 1
+  for (i in 1:(n - 1)) {
+    product <- product * (365 - i) / 365
+  }
+  return(product)
+}
+#Note:  Calculate the smallest value of n for which the probability of a match is greater than 0.5
+n <- 1
+while (no_shared_birthday(n) > 0.5) {
+  n <- n + 1
+}
+
+cat("The smallest value of n for which the probability of a match is greater than 0.5 is:", n, "\n")
+
+
+########################################################################################Q3
+#Function for Bayes' Theorem
+##P(A|B)=P(B|A)*P(A) / P(B)
+bayesTheorem <- function(pA, pB, pBA) {
+  pAB <- pA * pBA / pB
+  return(pAB)
+}
+#Define probabilities
+pRain <- 0.2
+pCloudy <- 0.4
+pCloudyRain <- .85
+#Function to calculate conditional probability
+bayesTheorem(pRain, pCloudy, pCloudyRain)
+#OR
+PAB<-function(PBA,PA,PB){ (PBA*PA)/PB}
+PAB(0.85, 0.2, 0.4)
+
+
+########################################################################################Q4
+
+# Load the iris dataset
+data(iris)
+
+# (a) Print first few rows of the dataset
+print(head(iris))
+
+# (b) Find the structure of the dataset
+str(iris)
+
+# (c) Find the range of the data regarding the sepal length of flowers
+sepal_length_range <- range(iris$Sepal.Length)
+cat("Range of Sepal Length:", sepal_length_range[1], "to", sepal_length_range[2], "\n")
+#OR
+range(A$Sepal.Length)
+
+# (d) Find the mean of the sepal length
+mean_sepal_length <- mean(iris$Sepal.Length)
+cat("Mean Sepal Length:", mean_sepal_length, "\n")
+
+# (e) Find the median of the sepal length
+median_sepal_length <- median(iris$Sepal.Length)
+cat("Median Sepal Length:", median_sepal_length, "\n")
+
+# (f) Find the first and the third quartiles and hence the interquartile range
+quartiles <- quantile(iris$Sepal.Length, c(0.25, 0.75))
+interquartile_range <- quartiles[2] - quartiles[1]
+cat("First Quartile:", quartiles[1], "\n")
+cat("Third Quartile:", quartiles[2], "\n")
+cat("Interquartile Range:", interquartile_range, "\n")
+
+# (g) Find the standard deviation and variance
+std_dev_sepal_length <- sd(iris$Sepal.Length)
+variance_sepal_length <- var(iris$Sepal.Length)
+cat("Standard Deviation of Sepal Length:", std_dev_sepal_length, "\n")
+cat("Variance of Sepal Length:", variance_sepal_length, "\n")
+
+# (h) Similar calculations for other attributes
+# Sepal Width
+std_dev_sepal_width <- sd(iris$Sepal.Width)
+variance_sepal_width <- var(iris$Sepal.Width)
+# Petal Length
+std_dev_petal_length <- sd(iris$Petal.Length)
+variance_petal_length <- var(iris$Petal.Length)
+# Petal Width
+std_dev_petal_width <- sd(iris$Petal.Width)
+variance_petal_width <- var(iris$Petal.Width)
+
+# (i) Use the built-in function summary on the dataset Iris
+summary(iris)
+
