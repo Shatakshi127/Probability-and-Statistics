@@ -1,0 +1,61 @@
+#METHODS TO FIND EXPECTED VALUE/MEAN:- (SUM OF PRODUCTS)
+#METHOD 1
+x<-c(0,1,2,3,4)
+p<-c(0.41,0.37, 0.16,0.05, 0.01)
+sum(x*p)
+#x1p1+x2p2+x3p3+x4p4
+
+#METHOD 2
+#weighted sum
+#1st and 2nd position= which vector and whom to multiply
+#weighted sum= 1
+x<-c(0,1,2,3,4)
+p<-c(0.41,0.37, 0.16,0.05, 0.01)
+weighted.mean(x,p)
+
+#METHOD 3
+x<-c(0,1,2,3,4)
+p<-c(0.41,0.37, 0.16,0.05, 0.01)
+c(x%*%p)
+
+
+####Ques- 0, 1, 3, 4. If 2 is omitted. Incomplete Data.
+x<-c(0,1,3,4)
+p<-c(0.41,0.37, 0.16,0.05, 0.01)
+c(x%*%p)
+
+x<-c(0,1,3,4)
+p<-c(0.41,0.37,0.05, 0.17)
+c(x%*%p)
+
+#########################################################################
+#1ST MOMENT: E(X)  = MEAN    =E(X)
+#2ND MOMENT: E(X^2)= VARIANCE=E((X-MEAN)^2)
+#3RD MOMENT: E(X^3)= SKEWNESS=E((X-MEAN)^3)
+#4RTH MOMENT: E(X^4)= KURTOSIS=E((X-MEAN)^4)
+
+#1ST MOMENT: E(X)  
+#2ND MOMENT: E(X^2)
+#3RD MOMENT: E(X^3)
+#4RTH MOMENT: E(X^4)
+
+#1st Expectation Value (Mean)= x.f(x) 
+#2nd x^2.f(x)
+#3rd x^3.f(x)
+
+# First Moment
+f1 <- function(t){t*0.5*exp(-abs(t))}
+Moment1 <- integrate(f1, lower=1, upper = 10)
+print(Moment1$value)
+# Second Moment
+f2 <- function(t){t^2*0.5*exp(-abs(t))}
+Moment2 <- integrate(f2, lower=1, upper = 10)
+print(Moment2$value)
+# Mean
+Meanval <- Moment1$value
+print(Meanval)
+# Variance
+f3 <- function(M1, M2){return(M2 - M1*M1)}
+Varval = f3(Moment1$value, Moment2$value)
+print(Varval)
+#########################################################################
